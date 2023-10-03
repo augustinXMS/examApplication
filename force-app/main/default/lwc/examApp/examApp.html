@@ -1,0 +1,52 @@
+<template>
+    <template if:true={examListShow}>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr>
+                    <th>Title of the Exam</th>
+                    <th>Datetime of Exam</th>
+                    <th>Total Score</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={newExamList} for:item="exam">
+                    <tr key={exam.Id}>
+                        <td>{exam.Name}</td>
+                        <td>{exam.Datetime_of_Exam__c}</td>
+                        <td>{exam.Total_Score__c}</td>   
+                        <td><lightning-button 
+                            variant="brand" 
+                            label="Brand" 
+                            title="Primary action" 
+                            data-exam-id={exam.Id}
+                            onclick={handleClick}>
+                        </lightning-button></td>
+                    </tr>
+                    <div key={exam.Id}>
+                        <template if:true={exam.show}>
+                            <lightning-datatable
+                                key-field="id"
+                                data={questionList}
+                                hide-checkbox-column
+                                columns={columnList}>
+                            </lightning-datatable>
+                        </template>
+                    </div>
+                </template>
+                <template  if:true={averageScoreShow}>
+                <tr>
+                    <td>Average</td>
+                    <td></td>
+                    <td>{averageScore}</td>   
+                    <td></td>
+                </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+    <template if:false={examListShow}>
+        No Exams, it's summerTime
+    </template>
+</template>
+
