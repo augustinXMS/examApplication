@@ -17,13 +17,13 @@
                         <td>{exam.Total_Score__c}</td>   
                         <td><lightning-button 
                             variant="brand" 
-                            label="Brand" 
+                            label="Questions" 
                             title="Primary action" 
                             data-exam-id={exam.Id}
                             onclick={handleClick}>
                         </lightning-button></td>
                     </tr>
-                    <div key={exam.Id}>
+                    <div  class="slds-p-around_small" key={exam.Id}>
                         <template if:true={exam.show}>
                             <lightning-datatable
                                 key-field="id"
